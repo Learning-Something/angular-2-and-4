@@ -1,5 +1,5 @@
 import { DaoInterface } from './dao.interface';
-import { Animal } from './../classes/animal'
+import { Animal } from './../1-classes/animal'
 
 export class AnimalDao implements DaoInterface {
     
