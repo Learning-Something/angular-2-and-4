@@ -1,4 +1,4 @@
-import { Animal } from './animal'
+import { Animal } from './animal';
 
 export class Cavalo extends Animal  {
     constructor(nome: string) {
