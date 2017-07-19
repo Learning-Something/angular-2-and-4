@@ -18,7 +18,7 @@ export class ContatosListaComponent implements OnInit {
 
     constructor(
         private contatoService: ContatoService,
-        private dialogService: DialogService;
+        private dialogService: DialogService
     ) {}
 
     ngOnInit(): void {

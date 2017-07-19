@@ -50,6 +50,11 @@ let ContatoService = class ContatoService {
             .then(() => contato)
             .catch(this.handleError);
     }
+    search(term) {
+        return this.http
+            .get(`${this.contatosUrl}/?nome=${term}`)
+            .map((res) => res.json().data);
+    }
     handleError(err) {
         console.log('Erro: ', err);
         return Promise.reject(err.message || err);

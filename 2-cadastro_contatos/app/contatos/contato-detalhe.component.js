@@ -56,7 +56,7 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         else {
             promise = this.contatoService.update(this.contato);
         }
-        promise.then(contato => goBack());
+        promise.then(contato => this.goBack());
     }
     goBack() {
         this.location.back();
