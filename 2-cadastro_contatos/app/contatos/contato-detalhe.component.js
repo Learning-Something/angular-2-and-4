@@ -24,6 +24,7 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         this.contato = new contato_model_1.Contato(0, '', '', '');
         this.route.params.forEach((params) => {
             let id = +params['id'];
+            this.isNew = true;
             if (id) {
                 this.isNew = false;
                 this.contatoService.getContato(id)
@@ -48,10 +49,14 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         };
     }
     onSubmit() {
+        let promise;
         if (this.isNew) {
+            promise = this.contatoService.create(this.contato);
         }
         else {
+            promise = this.contatoService.update(this.contato);
         }
+        promise.then(contato => this.location.back());
     }
 };
 ContatoDetalheComponent = __decorate([

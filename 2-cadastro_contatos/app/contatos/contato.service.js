@@ -15,15 +15,35 @@ let ContatoService = class ContatoService {
     constructor(http) {
         this.http = http;
         this.contatosUrl = 'app/contatos';
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     getContatos() {
         return this.http.get(this.contatosUrl)
             .toPromise()
-            .then(response => response.json().data);
+            .then(response => response.json().data)
+            .catch(this.handleError);
     }
     getContato(id) {
         return this.getContatos()
             .then((contatos) => contatos.find(contato => contato.id === id));
+    }
+    create(contato) {
+        return this.http.post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
+            .toPromise()
+            .then((response) => response.json().data)
+            .catch(this.handleError);
+    }
+    update(contato) {
+        let url = `${this.contatosUrl}/${contato.id}`;
+        return this.http
+            .put(url, JSON.stringify(contato), { headers: this.headers })
+            .toPromise()
+            .then(() => contato)
+            .catch(this.handleError);
+    }
+    handleError(err) {
+        console.log('Erro: ', err);
+        return Promise.reject(err.message || err);
     }
 };
 ContatoService = __decorate([

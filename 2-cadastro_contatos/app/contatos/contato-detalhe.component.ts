@@ -25,6 +25,7 @@ export class ContatoDetalheComponent implements OnInit {
         this.contato = new Contato(0, '', '', '');
         this.route.params.forEach((params: Params) => {
             let id: number = +params['id'];
+            this.isNew = true;
 
             if(id) {
                 this.isNew = false;
@@ -53,10 +54,14 @@ export class ContatoDetalheComponent implements OnInit {
     }
 
     onSubmit(): void {
-        if(this.isNew) {
+        let promise;
 
+        if(this.isNew) {
+            promise = this.contatoService.create(this.contato);
         } else {
-            
+            promise = this.contatoService.update(this.contato);
         }
+
+        promise.then(contato => this.location.back());
     }
 }
