@@ -3,6 +3,7 @@ import './util/rxjs-extensions';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from "@angular/forms";
 
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -18,7 +19,8 @@ import { DialogService } from './dialog.service';
         BrowserModule,
         ContatosModule, 
         HttpModule,
-        InMemoryWebApiModule.forRoot(InMemoryDataService)
+        InMemoryWebApiModule.forRoot(InMemoryDataService),
+        FormsModule
     ],
     declarations: [AppComponent],
     providers: [
