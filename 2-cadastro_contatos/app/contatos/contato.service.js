@@ -28,7 +28,8 @@ let ContatoService = class ContatoService {
             .then((contatos) => contatos.find(contato => contato.id === id));
     }
     create(contato) {
-        return this.http.post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
+        return this.http
+            .post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
             .toPromise()
             .then((response) => response.json().data)
             .catch(this.handleError);
@@ -37,6 +38,14 @@ let ContatoService = class ContatoService {
         let url = `${this.contatosUrl}/${contato.id}`;
         return this.http
             .put(url, JSON.stringify(contato), { headers: this.headers })
+            .toPromise()
+            .then(() => contato)
+            .catch(this.handleError);
+    }
+    delete(contato) {
+        let url = `${this.contatosUrl}/${contato.id}`;
+        return this.http
+            .delete(url, { headers: this.headers })
             .toPromise()
             .then(() => contato)
             .catch(this.handleError);
