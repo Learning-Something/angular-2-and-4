@@ -21,6 +21,6 @@
   </div>
 </nav>
 
-<contato-busca [busca]="termo" *ngIf="isRoot()"></contato-busca>
+<contato-busca [(busca)]="termo" *ngIf="isRoot()" ></contato-busca>
 
 <router-outlet></router-outlet>
